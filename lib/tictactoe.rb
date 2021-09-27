@@ -11,7 +11,6 @@ class Tic_Tac_Toe
     puts row
     puts separator
     puts row
-   
   end
 
 end
