@@ -19,6 +19,4 @@ RSpec.describe Tic_Tac_Toe do
     end
   end
 
-
-
 end
