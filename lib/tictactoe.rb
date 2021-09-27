@@ -3,4 +3,17 @@ class Tic_Tac_Toe
     puts("Welcome to Tic-Tac-Toe")
     "Welcome to Tic-Tac-Toe"
   end
+
+  def show_empty_board
+    row = ["   " +  "|" +  "   " + "|" + "   "]
+    separator = "-----------"
+    puts row
+    puts separator
+    puts row
+    puts separator
+    puts row
+   
+  end
+
 end
+
