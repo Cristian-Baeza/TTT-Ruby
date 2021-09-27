@@ -4,7 +4,7 @@ RSpec.describe Tic_Tac_Toe do
   
   describe '#run_app' do
     it 'returns the sum of its arguments' do
-      expect(Tic_Tac_Toe.new.run_app()).to eq("Welcome to Tic-Tac-Toe")
+      expect{Tic_Tac_Toe.new.run_app()}.to output(/Welcome to Tic-Tac-Toe/).to_stdout
     end
   end
 
