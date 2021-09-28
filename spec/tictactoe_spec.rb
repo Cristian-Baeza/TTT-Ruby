@@ -1,9 +1,10 @@
 require "tictactoe"
+require 'stringio'
 
 RSpec.describe Tic_Tac_Toe do
   
   describe "#show_empty_board" do
-    it "shows empty TTT board in terminal" do
+    it "shows TTT board in terminal" do
       new_game = Tic_Tac_Toe.new
       board_spaces = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
       board = ""
@@ -13,7 +14,7 @@ RSpec.describe Tic_Tac_Toe do
       board += "-----------\n"
       board += "   |   |   "
 
-      expect(new_game.show_empty_board(board_spaces)).to eq(board)
+      expect(new_game.show_board(board_spaces)).to eq(board)
     end
   end
   
@@ -57,6 +58,17 @@ RSpec.describe Tic_Tac_Toe do
   end
 
 
+  describe "#take_turn" do
+    it "check if alters board according to user input" do
+      new_game = Tic_Tac_Toe.new
+      board = new_game.board_spaces
+      player1 = new_game.player1
+      expected_output = ["X", " ", " ", " ", " ", " ", " ", " ", " "]
+
+      allow(new_game).to receive(:gets).and_return("1")
+      expect{new_game.take_turn(board, player1)}.to change {board}.to(expected_output)
+    end
+  end
 
 
 end

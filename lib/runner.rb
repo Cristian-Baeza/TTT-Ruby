@@ -1,6 +1,3 @@
-require_relative "tictactoe"
+require_relative "main_app"
 
-new_game = Tic_Tac_Toe.new
-new_game.run_app
-
-# puts(new_game.validate_user_input(33))
+run_main_app.run_main_app()
