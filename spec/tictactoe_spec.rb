@@ -1,4 +1,5 @@
 require "tictactoe"
+require 'questions'
 require 'stringio'
 
 RSpec.describe Tic_Tac_Toe do
@@ -22,7 +23,8 @@ RSpec.describe Tic_Tac_Toe do
   describe "#welcome_message" do
     it "returns welcome message and instructions" do
       new_game = Tic_Tac_Toe.new
-      welcome_greeting = "WELCOME TO TIC-TAC-TOE\n"
+      welcome_greeting = "-----------------------------\n"
+      welcome_greeting += " WELCOME TO TIC-TAC-TOE\n"
       welcome_greeting += "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
 
       expect(new_game.welcome_message()).to eq(welcome_greeting)
@@ -32,30 +34,33 @@ RSpec.describe Tic_Tac_Toe do
 
 
   describe "#validate_user_input" do
-    it "returns valid message if input is X, otherwise notify user of of invalid input" do
-      new_game = Tic_Tac_Toe.new
-      player1_input = "X"
-      valid_message = "GREAT CHOICE!"
+    it "returns the value the user picked and change to integer" do
+        questions = Questions.new
+        allow(questions).to receive(:gets).and_return("1\n")
 
-      expect(new_game.validate_user_input(player1_input)).to eq(valid_message)
-    end
-    
-    it "returns valid message if input is O, otherwise notify user of of invalid input" do
-      new_game = Tic_Tac_Toe.new
-      player2_input = "O"
-      valid_message = "GREAT CHOICE!"
+        answer = questions.validate_user_input("PICK A SPACE?", ["1", "2", "3", "4", "5", "6", "7", "8", "9"])
 
-      expect(new_game.validate_user_input(player2_input)).to eq(valid_message)
+        expect(answer).to eq(1)
     end
-    
-    it "returns invalid input message for invalid input" do
-      new_game = Tic_Tac_Toe.new
-      player_input = 2
-      invalid_message = "INVALID INPUT: PLEASE CHOOSE X OR O"
 
-      expect(new_game.validate_user_input(player_input)).to eq(invalid_message)
+    it "it loops asking the question until it gets a valid answer" do
+        question = "PICK A SPACE?"
+        options = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        questions = Questions.new
+
+        allow(questions).to receive(:gets).and_return("10\n", "1\n")
+        expect(questions).to receive(:puts).twice.with(question)
+        expect(questions).to receive(:puts).with("INVALID OPTION")
+
+        answer = questions.validate_user_input(question, options)
+
+        expect(answer).to eq(1)
     end
-  end
+
+
+end
+
+
 
 
   describe "#take_turn" do
@@ -64,9 +69,9 @@ RSpec.describe Tic_Tac_Toe do
       board = new_game.board_spaces
       player1 = new_game.player1
       expected_output = ["X", " ", " ", " ", " ", " ", " ", " ", " "]
+      choice = 1
 
-      allow(new_game).to receive(:gets).and_return("1")
-      expect{new_game.take_turn(board, player1)}.to change {board}.to(expected_output)
+      expect{new_game.take_turn(board, choice)}.to change {board}.to(expected_output)
     end
   end
 
