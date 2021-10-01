@@ -3,7 +3,7 @@ require 'stringio'
 
 RSpec.describe Tic_Tac_Toe do
   
-  describe "#show_empty_board" do
+  describe "#show_board" do
     it "shows TTT board in terminal" do
       new_game = Tic_Tac_Toe.new
       board_spaces = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
@@ -43,5 +43,25 @@ RSpec.describe Tic_Tac_Toe do
     end
   end
 
+  describe "#check_for_winner" do
+    it "return true if there is a winning combo on board" do
+       game = Tic_Tac_Toe.new
+       board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
+       win_combos = [ [0,1,2] ]
 
+       expect(game.check_for_winner?(board, win_combos)).to eq(true)
+    end
+    
+    it "return false if there is no winning combo on board" do
+       game = Tic_Tac_Toe.new
+       board = ["X", "X", " ", " ", " ", " ", " ", " ", " "]
+       win_combos = [ [0,1,2] ]
+
+       expect(game.check_for_winner?(board, win_combos)).to eq(false)
+    end
+      
+  end
+
+
+#LAST END
 end
