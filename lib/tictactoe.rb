@@ -50,16 +50,24 @@ class Tic_Tac_Toe
   end
 
 
-  def check_for_winner?(board, win_combos)
-    counter = 0
-    for win_combo in win_combos do 
-      for index_on_win_combo_board in win_combo do 
-          if board[index_on_win_combo_board] == "X"
-            counter += 1
-          end
+  def check_for_winner?(board)
+    winner_symbol = ""
+    for win_combo in WIN_COMBOS do 
+      win_index_1 = win_combo[0]
+      win_index_2 = win_combo[1]
+      win_index_3 = win_combo[2]
+
+      winning_position_1 = board[win_index_1]
+      winning_position_2 = board[win_index_2] 
+      winning_position_3 = board[win_index_3] 
+
+      if (winning_position_1 == winning_position_2) && (winning_position_2 == winning_position_3)
+        if winning_position_1 != " "
+          winner_symbol = winning_position_1
+        end
       end
     end
-    counter == 3 ? true : false
+    winner_symbol != "" ? winner_symbol : false 
 
   end
 
