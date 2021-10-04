@@ -54,17 +54,11 @@ class Tic_Tac_Toe
     counter = 0
     for win_combo in win_combos do 
       for index_on_win_combo_board in win_combo do 
-        for e in board do
           if board[index_on_win_combo_board] == "X"
             counter += 1
-            #WIP
           end
-        end
-        
       end
     end
-    puts("hello")
-    puts(counter)
     counter == 3 ? true : false
 
   end

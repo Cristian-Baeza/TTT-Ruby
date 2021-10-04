@@ -49,7 +49,11 @@ RSpec.describe Tic_Tac_Toe do
        board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
        win_combos = [ [0,1,2] ]
 
+       board2 = [" ", " ", " ", "X", "X", "X", " ", " ", " "]
+       win_combos2 = [ [3,4,5] ]
+
        expect(game.check_for_winner?(board, win_combos)).to eq(true)
+       expect(game.check_for_winner?(board2, win_combos2)).to eq(true)
     end
     
     it "return false if there is no winning combo on board" do
