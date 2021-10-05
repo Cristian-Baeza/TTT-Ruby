@@ -54,9 +54,9 @@ RSpec.describe Tic_Tac_Toe do
        #checks vertical column 
        winning_board3 = ["O", " ", " ", "O", " ", " ", "O", " ", " "]
 
-       expect(game.check_for_winner?(winning_board)).to eq("X")
-       expect(game.check_for_winner?(winning_board2)).to eq("X")
-       expect(game.check_for_winner?(winning_board3)).to eq("O")
+       expect(game.check_for_winner?(winning_board)).to be_truthy
+       expect(game.check_for_winner?(winning_board2)).to be_truthy
+       expect(game.check_for_winner?(winning_board3)).to be_truthy
     end
     
     it "return false if there is no winning combo on board" do

@@ -18,10 +18,10 @@ def run_main_app()
 
   winner = @game.check_for_winner?(board_spaces)
   
-  if winner == false
+  if !winner
     run_main_app()
   else 
-    puts("CONGRATS PLAYER #{winner}!!")
+    puts("GAME OVER!!")
   end
 
 
