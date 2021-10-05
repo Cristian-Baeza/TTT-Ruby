@@ -65,8 +65,8 @@ RSpec.describe Tic_Tac_Toe do
        no_winning_board = ["X", "X", " ", " ", " ", " ", " ", " ", " "]
        no_winning_board2 = ["O", "X", "O", "O", "X", "O", "X", "O", "X"]
 
-       expect(game.check_for_winner?(no_winning_board)).to eq(false)
-       expect(game.check_for_winner?(no_winning_board2)).to eq(false)
+       expect(game.check_for_winner?(no_winning_board)).to be_falsey
+       expect(game.check_for_winner?(no_winning_board2)).to be_falsey
     end
       
   end
