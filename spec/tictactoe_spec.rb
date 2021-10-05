@@ -3,7 +3,7 @@ require 'stringio'
 
 RSpec.describe Tic_Tac_Toe do
   
-  describe "#show_empty_board" do
+  describe "#show_board" do
     it "shows TTT board in terminal" do
       new_game = Tic_Tac_Toe.new
       board_spaces = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
@@ -42,6 +42,35 @@ RSpec.describe Tic_Tac_Toe do
       expect{new_game.take_turn(board, choice)}.to change {board}.to(expected_output)
     end
   end
+
+  describe "#check_for_winner" do
+    it "return winner symbol if there is a winning combo on board" do
+       game = Tic_Tac_Toe.new
+
+       # checks horizontal win
+       winning_board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
+       #checks diagonal win
+       winning_board2 = [" ", " ", "X", " ", "X", " ", "X", " ", " "]
+       #checks vertical column 
+       winning_board3 = ["O", " ", " ", "O", " ", " ", "O", " ", " "]
+
+       expect(game.check_for_winner?(winning_board)).to eq("X")
+       expect(game.check_for_winner?(winning_board2)).to eq("X")
+       expect(game.check_for_winner?(winning_board3)).to eq("O")
+    end
+    
+    it "return false if there is no winning combo on board" do
+       game = Tic_Tac_Toe.new
+
+       no_winning_board = ["X", "X", " ", " ", " ", " ", " ", " ", " "]
+       no_winning_board2 = ["O", "X", "O", "O", "X", "O", "X", "O", "X"]
+
+       expect(game.check_for_winner?(no_winning_board)).to be_falsey
+       expect(game.check_for_winner?(no_winning_board2)).to be_falsey
+    end
+      
+  end
+
 
 
 end
