@@ -64,7 +64,7 @@ class Tic_Tac_Toe
       end
 
     end
-    winner_symbol != "" ? true : false
+    winner_symbol != "" ? winner_symbol : nil
   end
 
 

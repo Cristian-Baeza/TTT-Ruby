@@ -21,7 +21,7 @@ def run_main_app()
   if !winner
     run_main_app()
   else 
-    puts("GAME OVER!!")
+    puts("GAME OVER: PLAYER #{winner} WINS!!")
   end
 
 
