@@ -52,20 +52,35 @@ class Tic_Tac_Toe
 
   def check_for_winner?(board)
     winner_symbol = ""
-    for win_combo in WIN_COMBOS do 
-      win_index_1 = win_combo[0]
-      win_index_2 = win_combo[1]
-      win_index_3 = win_combo[2]
-
-      winning_position_1 = board[win_index_1]
-      winning_position_2 = board[win_index_2] 
-      winning_position_3 = board[win_index_3] 
-
-      if (winning_position_1 == winning_position_2) && (winning_position_2 == winning_position_3)
-        if winning_position_1 != " "
-          winner_symbol = winning_position_1
-        end
+    
+    for win_combo in WIN_COMBOS do
+      row = Array.new
+      for index in win_combo do 
+        row.append(board[win_combo[index]])
       end
+       if (row.all? { |each| each == row[0]})
+          if row[0] != " "
+            winner_symbol = row[0]
+          end
+       end
+
+      # old code 
+      # win_index_1 = win_combo[0]
+      # win_index_2 = win_combo[1]
+      # win_index_3 = win_combo[2]
+
+      # winning_position_1 = board[win_index_1]
+      # winning_position_2 = board[win_index_2] 
+      # winning_position_3 = board[win_index_3] 
+
+      # if (winning_position_1 == winning_position_2) && (winning_position_2 == winning_position_3)
+      #   if winning_position_1 != " "
+      #     winner_symbol = winning_position_1
+      #   end
+      # end
+    
+    
+    #for loop end
     end
     winner_symbol != "" ? winner_symbol : false 
 
