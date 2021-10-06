@@ -1,29 +1,32 @@
 class Questions
-  attr_reader :player_counter
 
-  def initialize()
-    @player_counter = 2
-  end
+  def turn_count(board)
+    counter = 0
+    board.each do |space|
+       if space == "X" || space == "O"
+          counter += 1
+        end
+    end
+    counter
+ end
+ 
+ 
+ def current_player(board)
+    turn_count(board) % 2 == 0 ? "PLAYER X" : "PLAYER O"
+ end
 
-  def increase_player_counter
-    @player_counter += 1
-  end
 
-  def current_player()
-    @player_counter.even? ? "PLAYER X" : "PLAYER O"
-  end
-
-
-  def validate_user_input(question, valid_options)
-      puts question + current_player()
+  def validate_user_input(question, valid_options, board)
+      puts question + current_player(board)
       user_answer = gets.chomp
       if valid_options.include?(user_answer)
-        increase_player_counter()
         return user_answer.to_i
       else
         puts "INVALID OPTION"
-        validate_user_input(question, valid_options)
+        validate_user_input(question, valid_options, board)
       end 
   end
+
+
 
 end
