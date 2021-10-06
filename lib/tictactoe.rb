@@ -68,6 +68,14 @@ class Tic_Tac_Toe
   end
 
 
+  def turn_count(board)
+    board.size - board.count(" ")
+  end
+ 
+
+ def current_player(board)
+    turn_count(board) % 2 == 0 ? "PLAYER X" : "PLAYER O"
+ end
 
 
 
