@@ -23,7 +23,7 @@ RSpec.describe Tic_Tac_Toe do
     it "returns welcome message and instructions" do
       new_game = Tic_Tac_Toe.new
       welcome_greeting = "-----------------------------\n"
-      welcome_greeting += " WELCOME TO TIC-TAC-TOE\n"
+      welcome_greeting += "WELCOME TO TIC-TAC-TOE\n"
       welcome_greeting += "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
 
       expect(new_game.welcome_message()).to eq(welcome_greeting)
@@ -96,6 +96,31 @@ RSpec.describe Tic_Tac_Toe do
           board = ["X", "O", "X", " ", " ", " ", " ", " ", " "]
     
           expect(game.current_player(board)).to eq("PLAYER O")
+      end
+    end
+    
+    
+    describe "#position_taken" do
+      it "returns true if user board space choice is taken" do
+          game = Tic_Tac_Toe.new
+          board = ["X", "O", " ", " ", " ", " ", " ", " ", " "]
+          choice = 2
+          board2 = ["X", "O", " ", "X", " ", "O", " ", " ", " "]
+          choice2 = 6
+    
+          expect(game.position_taken?(board, choice)).to be_truthy
+          expect(game.position_taken?(board2, choice2)).to be_truthy
+      end
+      
+      it "returns false if user board space choice is not taken" do
+          game = Tic_Tac_Toe.new
+          board = ["X", "O", " ", " ", " ", " ", " ", " ", " "]
+          choice = 3
+          board2 = ["X", "O", " ", "X", " ", "O", " ", " ", " "]
+          choice2 = 9
+    
+          expect(game.position_taken?(board, choice)).to be_falsey
+          expect(game.position_taken?(board2, choice2)).to be_falsey
       end
     end
       

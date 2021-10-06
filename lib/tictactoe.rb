@@ -1,7 +1,8 @@
 class Tic_Tac_Toe
     attr_reader :board_spaces, :player1, :player2
     
-    WELCOME_MESSAGE = "-----------------------------\n WELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
+    WELCOME_MESSAGE = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
+    SPACE_TAKEN = "-----------------------------\n SPACE TAKEN! PICK ANOTHER"
     
     WIN_COMBOS = [ 
       [0,1,2], # top_row 
@@ -28,6 +29,11 @@ class Tic_Tac_Toe
   end
 
 
+  def space_taken_message
+    SPACE_TAKEN
+  end
+
+
   def take_turn(board_spaces, choice)
     if @player_counter.even?
       board_spaces[choice - 1] = @player1
@@ -38,6 +44,15 @@ class Tic_Tac_Toe
     end
   end
 
+
+  def position_taken?(board, index_choice)
+    if board[index_choice - 1] == "X" || board[index_choice - 1] == "O"
+      true
+    else
+      false
+    end
+  end
+  
 
   def show_board(board_spaces)
     board = ""
@@ -77,6 +92,8 @@ class Tic_Tac_Toe
     turn_count(board) % 2 == 0 ? "PLAYER X" : "PLAYER O"
  end
 
+
+ 
 
 
 end
