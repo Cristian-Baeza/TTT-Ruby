@@ -69,14 +69,8 @@ class Tic_Tac_Toe
 
 
   def turn_count(board)
-    counter = 0
-    board.each {|space| 
-      if space == "X" || space == "O"
-          counter += 1
-        end }
-    
-    counter
- end
+    board.size - board.count(" ")
+  end
  
 
  def current_player(board)
