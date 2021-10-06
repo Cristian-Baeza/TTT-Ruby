@@ -14,7 +14,7 @@ def run_main_app()
   puts(@game.welcome_message())
   puts(@game.show_board(board_spaces))
 
-  @game.take_turn(board_spaces, @questions.validate_user_input("PICK A SPACE ", valid_options, board_spaces ))
+  @game.take_turn(board_spaces, @questions.validate_user_input("PICK A SPACE #{@game.current_player(board_spaces)}", valid_options))
 
   winner = @game.check_for_winner?(board_spaces)
   
