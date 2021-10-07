@@ -33,9 +33,8 @@ RSpec.describe Tic_Tac_Toe do
   describe "#take_turn" do
     it "check if alters board according to user input" do
       game = Tic_Tac_Toe.new
-      # board = new_game.board_spaces
       player1 = game.player1
-      expected_output = ["X", " ", " ", " ", " ", " ", " ", " ", " "]
+      expected_output = [player1, " ", " ", " ", " ", " ", " ", " ", " "]
       choice = 1
 
       expect{game.take_turn(choice)}.to change {game.board_spaces}.to(expected_output)

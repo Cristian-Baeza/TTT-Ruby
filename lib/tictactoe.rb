@@ -18,8 +18,8 @@ class Tic_Tac_Toe
 
   def initialize()
     @board_spaces = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    @player1 = "X"
-    @player2 = "O"
+    @player1 = :X
+    @player2 = :O
     @player_counter = 2
   end
 
