@@ -1,4 +1,4 @@
-# tic-tac-toe
+# Tic-Tac-Toe
 
 ## Run Locally
 
@@ -17,26 +17,29 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  gem install
+  bundle install
 ```
 
 Start application
 
 ```bash
-  cd lib
-  ruby tictactoe.rb
+  ruby lib/runner.rb
 ```
 
 ## Running Tests
 
-Go to root directory
+From root directory
 
 ```bash
   cd TTT-Ruby
 ```
 
-Run rspec on spec file
+Run rspec on a file from spec directory
 
 ```bash
-  rspec spec/tictactoe.rb
+  rspec spec/*test-file*.rb
 ```
+
+## Demo
+
+![App Screenshot](https://ik.imagekit.io/0jty0e7po/TTT-Menu_WqThmNcWn02.png?updatedAt=1633631650496)
