@@ -1,7 +1,8 @@
 class Tic_Tac_Toe
     attr_reader :board_spaces, :player1, :player2
     
-    WELCOME_MESSAGE = "-----------------------------\n WELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
+    WELCOME_MESSAGE = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
+    SPACE_TAKEN = "-----------------------------\n SPACE TAKEN! PICK ANOTHER"
     
     WIN_COMBOS = [ 
       [0,1,2], # top_row 
@@ -17,8 +18,8 @@ class Tic_Tac_Toe
 
   def initialize()
     @board_spaces = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    @player1 = "X"
-    @player2 = "O"
+    @player1 = :X
+    @player2 = :O
     @player_counter = 2
   end
 
@@ -28,55 +29,66 @@ class Tic_Tac_Toe
   end
 
 
-  def take_turn(board_spaces, choice)
+  def space_taken_message
+    SPACE_TAKEN
+  end
+
+
+  def take_turn(choice)
     if @player_counter.even?
-      board_spaces[choice - 1] = @player1
+      @board_spaces[choice - 1] = @player1
       @player_counter += 1
     elsif @player_counter.odd?
-      board_spaces[choice - 1] = @player2
+      @board_spaces[choice - 1] = @player2
       @player_counter += 1
     end
   end
 
 
-  def show_board(board_spaces)
+  def position_taken?(index_choice)
+     @board_spaces[index_choice - 1] != " "
+  end
+  
+
+  def show_board
     board = ""
-    board += " #{board_spaces[0]} | #{board_spaces[1]} |  #{board_spaces[2]}\n"
+    board += " #{@board_spaces[0]} | #{@board_spaces[1]} |  #{@board_spaces[2]}\n"
     board += "-----------\n"
-    board += " #{board_spaces[3]} | #{board_spaces[4]} |  #{board_spaces[5]}\n"
+    board += " #{@board_spaces[3]} | #{@board_spaces[4]} |  #{@board_spaces[5]}\n"
     board += "-----------\n"
-    board += " #{board_spaces[6]} | #{board_spaces[7]} |  #{board_spaces[8]}"
+    board += " #{@board_spaces[6]} | #{@board_spaces[7]} |  #{@board_spaces[8]}"
     return board
   end
 
 
-  def check_for_winner?(board)
+  def check_for_winner?
     winner_symbol = ""
     for win_combo in WIN_COMBOS do
       row = Array.new
       for index in win_combo do 
-        row.append(board[index])
+        row.append(@board_spaces[index])
       end
       if (row.all? { |each| each == row[0]})
           if row[0] != " "
             winner_symbol = row[0]
           end
       end
-
     end
     winner_symbol != "" ? winner_symbol : nil
   end
 
 
-  def turn_count(board)
-    board.size - board.count(" ")
+  def turn_count
+    @board_spaces.size - @board_spaces.count(" ")
   end
  
 
- def current_player(board)
-    turn_count(board) % 2 == 0 ? "PLAYER X" : "PLAYER O"
+ def current_player
+    turn_count() % 2 == 0 ? "PLAYER X" : "PLAYER O"
  end
 
+
+ 
 
 
 end
