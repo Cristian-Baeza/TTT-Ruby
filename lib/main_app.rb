@@ -28,7 +28,8 @@ def run_main_app()
 
   if !winner
     run_main_app()
-  else 
+  else
+    puts(@game.show_board()) 
     puts("GAME OVER: #{winner} WINS!!")
   end
 
