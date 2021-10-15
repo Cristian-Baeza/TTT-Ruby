@@ -1,5 +1,5 @@
 require 'questions'
-require "tictactoe"
+# require "game_logic"
 
 RSpec.describe Questions do
 

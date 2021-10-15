@@ -1,37 +1,37 @@
-require_relative "tictactoe"
+require_relative "game_logic"
 require_relative "questions"
+require_relative "console_output"
 
-@questions = Questions.new
-@game = Tic_Tac_Toe.new
+# Did not work
+# @questions = Questions.new
+# @game = GameLogic.new
+# @console_output = ConsoleOutput.new
 
-def run_main_app()
+class GameLoop
 
-  player1 = @game.player1
-  player2 = @game.player2
-  valid_options = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  def run
+    @questions = Questions.new
+    @game = GameLogic.new
+    @console_output = ConsoleOutput.new
 
-  puts(@game.welcome_message())
-  puts(@game.show_board())
+    until @game.check_for_winner? do  # rename this to @game.in_progress
+      puts(@console_output.welcome_message())
+      puts(@console_output.show_board(@game))
 
+      available_spaces = @game.open_spaces 
 
-  current_player = @game.current_player()
-  user_choice = @questions.validate_user_input("PICK A SPACE #{current_player}", valid_options)
+      valid_options = available_spaces.map(&:to_s) 
+    
+      user_choice = @questions.validate_user_input("PICK A SPACE #{@game.current_player()}", valid_options)
+      
+      @game.take_turn(user_choice) 
 
-  if @game.position_taken?(user_choice)
-    puts(@game.space_taken_message())
-  else 
-    @game.take_turn(user_choice)
+    end
+    puts(@console_output.show_board(@game)) 
+    puts("GAME OVER: #{@game.check_for_winner?} WINS!!")
   end
-
-
-  winner = @game.check_for_winner?
-
-  if !winner
-    run_main_app()
-  else
-    puts(@game.show_board()) 
-    puts("GAME OVER: #{winner} WINS!!")
-  end
-
 
 end
+
+game = GameLoop.new
+game.run()
