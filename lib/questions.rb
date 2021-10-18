@@ -11,6 +11,4 @@ class Questions
       end 
   end
 
-
-
 end
