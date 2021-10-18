@@ -9,10 +9,7 @@ class GameLoop
     @game = GameLogic.new
     @console_output = ConsoleOutput.new
 
-
-
-    until @game.is_there_winner? do
-      if !@game.board_full?
+    until @game.board_full? || @game.is_there_winner? do
       puts(@console_output.welcome_message())
       puts(@console_output.show_board(@game))
 
@@ -20,18 +17,14 @@ class GameLoop
 
       user_choice = @questions.validate_user_input("PICK A SPACE #{@game.current_player()}", valid_options)
       @game.take_turn(user_choice)
-
-      else
-        break
-      end
     end
 
-    if @game.board_full?
-      puts(@console_output.show_board(@game))
-      puts(@console_output.tie_message)
-    else
+    if @game.is_there_winner?
       puts(@console_output.show_board(@game)) 
       puts("GAME OVER: #{@game.is_there_winner?} WINS!!")
+    else
+      puts(@console_output.show_board(@game))
+      puts(@console_output.tie_message)
     end
 
   end
