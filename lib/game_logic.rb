@@ -1,6 +1,6 @@
 class GameLogic
   attr_reader :board_spaces
-    
+
   WIN_COMBOS = [ 
     [0,1,2], # top_row 
     [3,4,5], # middle_row 
@@ -54,7 +54,7 @@ class GameLogic
   end
 
   def is_game_over?
-    board_full?() || is_there_winner?() 
+    board_full?() || is_there_winner?()
   end
 
 
