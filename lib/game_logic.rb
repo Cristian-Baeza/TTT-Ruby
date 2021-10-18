@@ -48,5 +48,11 @@ class GameLogic
   def current_player
       turn_count() % 2 == 0 ? :X : :O
   end
+
+  def board_full?
+    !@board_spaces.include?(:empty)
+  end
+
+
 end
 
