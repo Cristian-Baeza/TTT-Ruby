@@ -53,6 +53,10 @@ class GameLogic
     !@board_spaces.include?(:empty)
   end
 
+  def is_game_over?
+    board_full?() || is_there_winner?() 
+  end
+
 
 end
 

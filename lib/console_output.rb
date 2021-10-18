@@ -1,20 +1,7 @@
 class ConsoleOutput
 
     WELCOME_MESSAGE = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
-    SPACE_TAKEN = "-----------------------------\n SPACE TAKEN! PICK ANOTHER"
     TIE_MESSAGE = "GAME OVER: TIE!"
-
-    def welcome_message
-      WELCOME_MESSAGE
-    end
-  
-    def space_taken_message
-      SPACE_TAKEN
-    end
-
-    def tie_message
-      TIE_MESSAGE
-    end
 
     def formatter(value)
       return " " if value == :empty

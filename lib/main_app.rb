@@ -9,8 +9,8 @@ class GameLoop
     @game = GameLogic.new
     @console_output = ConsoleOutput.new
 
-    until @game.board_full? || @game.is_there_winner? do
-      puts(@console_output.welcome_message())
+    until @game.is_game_over? do
+      puts(ConsoleOutput::WELCOME_MESSAGE)
       puts(@console_output.show_board(@game))
 
       valid_options = @game.open_spaces.map(&:to_s)  
@@ -19,12 +19,12 @@ class GameLoop
       @game.take_turn(user_choice)
     end
 
-    if @game.is_there_winner?
-      puts(@console_output.show_board(@game)) 
+    puts(@console_output.show_board(@game)) 
+
+    if @game.is_there_winner? 
       puts("GAME OVER: #{@game.is_there_winner?} WINS!!")
     else
-      puts(@console_output.show_board(@game))
-      puts(@console_output.tie_message)
+      puts(ConsoleOutput::TIE_MESSAGE)
     end
 
   end
