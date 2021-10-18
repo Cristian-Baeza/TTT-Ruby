@@ -19,11 +19,11 @@ RSpec.describe ConsoleOutput do
       ttt_game = GameLogic.new
       new_game = ConsoleOutput.new
       board = ""
-      board += "   |   |   \n"
+      board += "   |   |  \n"
       board += "-----------\n"
-      board += "   |   |   \n"
+      board += "   |   |  \n"
       board += "-----------\n"
-      board += "   |   |   "
+      board += "   |   |  "
 
       expect(new_game.show_board(ttt_game)).to eq(board)
     end

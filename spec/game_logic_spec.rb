@@ -13,7 +13,7 @@ RSpec.describe GameLogic do
     end
   end
 
-  describe "#check_for_winner" do
+  describe "#is_there_winner" do
     it "return winner symbol if there is a horizontal winning combo on board" do
        game = GameLogic.new
       # checks horizontal win
@@ -21,7 +21,7 @@ RSpec.describe GameLogic do
        game.board_spaces[1] = :X 
        game.board_spaces[2] = :X
 
-       expect(game.check_for_winner?()).to eq(:X)
+       expect(game.is_there_winner?()).to eq(:X)
     end
     
     it "return winner symbol if there is a diagonal winning combo on board" do
@@ -31,7 +31,7 @@ RSpec.describe GameLogic do
        game.board_spaces[4] = :X 
        game.board_spaces[6] = :X 
 
-       expect(game.check_for_winner?()).to eq(:X)
+       expect(game.is_there_winner?()).to eq(:X)
     end
     
     it "return winner symbol if there is a vertical winning combo on board" do
@@ -41,7 +41,7 @@ RSpec.describe GameLogic do
        game.board_spaces[3] = :O 
        game.board_spaces[6] = :O 
 
-       expect(game.check_for_winner?()).to eq(:O)
+       expect(game.is_there_winner?()).to eq(:O)
     end
     
     it "return false if there is no winning combo on board" do
@@ -49,7 +49,7 @@ RSpec.describe GameLogic do
        game.board_spaces[0] = :X 
        game.board_spaces[1] = :X 
 
-       expect(game.check_for_winner?()).to be_falsey
+       expect(game.is_there_winner?()).to be_falsey
     end
   end
 
@@ -81,6 +81,25 @@ RSpec.describe GameLogic do
           game.board_spaces[2] = :X
     
           expect(game.current_player()).to eq(:O)
+      end
+    end
+
+    describe "#open_spaces" do
+      it "returns array of all available spaces to play for empty board" do
+        game = GameLogic.new 
+        expected_output = [1,2,3,4,5,6,7,8,9]
+
+        expect(game.open_spaces).to eq(expected_output)
+      end
+      
+      it "returns only available spaces to play" do
+        game = GameLogic.new
+        game.board_spaces[0] = :X
+        game.board_spaces[1] = :O
+        game.board_spaces[2] = :X
+        expected_output = [4,5,6,7,8,9]
+
+        expect(game.open_spaces).to eq(expected_output)
       end
     end
 

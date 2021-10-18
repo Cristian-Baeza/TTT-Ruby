@@ -1,5 +1,4 @@
 require 'questions'
-# require "game_logic"
 
 RSpec.describe Questions do
 
@@ -29,38 +28,5 @@ describe "#validate_user_input" do
       expect(answer).to eq(1)
   end
 end
-
-# describe "#turn_count" do
-#   it "returns total number of board spaces used" do
-#       questions = Questions.new
-#       board = ["X", "O", " ", " ", " ", " ", " ", " ", " "]
-#       board2 = ["X", "O", " ", "X", " ", " ", " ", " ", " "]
-#       board3 = ["X", "O", " ", "X", " ", " ", " ", "O", " "]
-
-#       expect(questions.turn_count(board)).to eq(2)
-#       expect(questions.turn_count(board2)).to eq(3)
-#       expect(questions.turn_count(board3)).to eq(4)
-#   end
-# end
-
-# describe "#current_player" do
-#   it "returns player X if spaces used on board is even" do
-#       questions = Questions.new
-#       board = ["X", "O", " ", " ", " ", " ", " ", " ", " "]
-
-#       expect(questions.current_player(board)).to eq("PLAYER X")
-#   end
-
-#   it "returns player O if spaces used on board is odd" do
-#       questions = Questions.new
-#       board = ["X", "O", "X", " ", " ", " ", " ", " ", " "]
-
-#       expect(questions.current_player(board)).to eq("PLAYER O")
-#   end
-# end
-
-
-
-
 
 end

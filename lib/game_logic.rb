@@ -23,11 +23,9 @@ class GameLogic
   def open_spaces
     spaces_available_index = @board_spaces.each_index.select {|i| @board_spaces[i] == :empty}
     spaces_available_index.map {|each| each + 1}
-    # return array of spaces that are open e.q. [0, 4, 6, 8, 9]
   end
 
-  
-  def check_for_winner?
+  def is_there_winner?
     winner_symbol = nil
     for win_combo in WIN_COMBOS do
       row = Array.new
