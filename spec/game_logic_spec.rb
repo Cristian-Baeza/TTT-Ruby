@@ -103,4 +103,30 @@ RSpec.describe GameLogic do
       end
     end
 
+    describe "#board_full?" do
+      it "returns true if board is full of player moves" do
+        game = GameLogic.new
+        game.board_spaces[0] = :X
+        game.board_spaces[1] = :X
+        game.board_spaces[2] = :X
+        game.board_spaces[3] = :X
+        game.board_spaces[4] = :X
+        game.board_spaces[5] = :X
+        game.board_spaces[6] = :X
+        game.board_spaces[7] = :X
+        game.board_spaces[8] = :X
+
+        expect(game.board_full?).to eq(true)
+      end
+      
+      it "returns false if board still has empty spaces" do
+        game = GameLogic.new
+        game.board_spaces[0] = :X
+        game.board_spaces[1] = :X
+        game.board_spaces[2] = :X
+
+        expect(game.board_full?).to eq(false)
+      end
+    end
+
 end

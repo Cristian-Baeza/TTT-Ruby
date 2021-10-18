@@ -1,6 +1,6 @@
 class GameLogic
   attr_reader :board_spaces
-    
+
   WIN_COMBOS = [ 
     [0,1,2], # top_row 
     [3,4,5], # middle_row 
@@ -48,5 +48,15 @@ class GameLogic
   def current_player
       turn_count() % 2 == 0 ? :X : :O
   end
+
+  def board_full?
+    !@board_spaces.include?(:empty)
+  end
+
+  def is_game_over?
+    board_full?() || is_there_winner?()
+  end
+
+
 end
 
