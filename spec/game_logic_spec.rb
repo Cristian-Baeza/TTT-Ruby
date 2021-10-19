@@ -129,4 +129,22 @@ RSpec.describe GameLogic do
       end
     end
 
+    describe "#cpu_turn" do
+      it "fills in board in a random open space" do
+      game = GameLogic.new
+      game.board_spaces[0] = :O
+      game.board_spaces[1] = :O
+      game.board_spaces[2] = :O
+      game.board_spaces[3] = :O
+      game.board_spaces[4] = :O
+      game.board_spaces[5] = :O
+      game.board_spaces[6] = :O
+      game.board_spaces[7] = :O
+
+      expected_output = [:O, :O, :O, :O, :O, :O, :O, :O, :X]
+
+      expect{game.cpu_turn}.to change {game.board_spaces}.to(expected_output) 
+      end
+    end
+
 end

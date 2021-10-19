@@ -57,11 +57,8 @@ class GameLogic
     board_full?() || is_there_winner?()
   end
 
-
   def cpu_turn
-    random_open_space = open_spaces().sample #returns available spaces
-    #choose empty board spot
-    # submit it to take_turn(empty board spot choosen)
+    random_open_space = open_spaces().sample
     take_turn(random_open_space)
   end
 
