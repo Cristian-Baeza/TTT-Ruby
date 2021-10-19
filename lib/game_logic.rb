@@ -58,5 +58,14 @@ class GameLogic
   end
 
 
+  def cpu_turn
+    random_open_space = open_spaces().sample #returns available spaces
+    #choose empty board spot
+    # submit it to take_turn(empty board spot choosen)
+    take_turn(random_open_space)
+  end
+
+
+
 end
 
