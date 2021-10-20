@@ -1,13 +1,13 @@
 class ConsoleOutput
 
     # WELCOME_MESSAGE_HVH = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
-    
+
     # WELCOME_MESSAGE_HVC = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- CPU 2 IS O\n\n"
-    
+
     TIE_MESSAGE = "GAME OVER: TIE!"
 
-    def welcome_message(human_or_cpu)
-      "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- #{human_or_cpu} 2 IS O\n\n"
+    def welcome_message(player_one_type, player_two_type)
+      "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "#{player_one_type} 1 IS X --- #{player_two_type} 2 IS O\n\n"
     end
 
     def formatter(value)
