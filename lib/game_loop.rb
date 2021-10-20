@@ -31,6 +31,5 @@ class GameLoop
     else
       puts(ConsoleOutput::TIE_MESSAGE)
     end
-
   end
 end
