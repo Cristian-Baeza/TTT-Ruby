@@ -6,8 +6,8 @@ class ConsoleOutput
 
     TIE_MESSAGE = "GAME OVER: TIE!"
 
-    def welcome_message(player_one_type, player_two_type)
-      "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "#{player_one_type} 1 IS X --- #{player_two_type} 2 IS O\n\n"
+    def welcome_message(game_config)
+      "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "#{game_config.player_one_type} 1 IS X --- #{game_config.player_two_type} 2 IS O\n\n"
     end
 
     def formatter(value)
