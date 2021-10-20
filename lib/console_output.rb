@@ -1,19 +1,24 @@
 class ConsoleOutput
 
-    # WELCOME_MESSAGE_HVH = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
-    
-    # WELCOME_MESSAGE_HVC = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- CPU 2 IS O\n\n"
-    
-    TIE_MESSAGE = "GAME OVER: TIE!"
+  # WELCOME_MESSAGE_HVH = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
 
-    def welcome_message(human_or_cpu)
-      "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- #{human_or_cpu} 2 IS O\n\n"
-    end
+  # WELCOME_MESSAGE_HVC = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- CPU 2 IS O\n\n"
 
-    def formatter(value)
-      return " " if value == :empty
-      value
-    end
+  TIE_MESSAGE = "GAME OVER: TIE!"
+
+  def print_game_title_and_board(game, game_config)
+    puts(welcome_message(game_config))
+    puts(show_board(game))
+  end
+
+  def welcome_message(game_config)
+    "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "#{game_config.player_one_type} 1 IS X --- #{game_config.player_two_type} 2 IS O\n\n"
+  end
+
+  def formatter(value)
+    return " " if value == :empty
+    value
+  end
 
   def show_board(ttt)
     board = ""
