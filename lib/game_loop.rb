@@ -3,24 +3,18 @@ require_relative "questions"
 require_relative "console_output"
 require_relative "game_config"
 
-
-
 class GameLoop
 
-  def print_game_title_and_board
-    puts(@console_output.welcome_message(@game_config))
-    puts(@console_output.show_board(@game))
+  def initialize(questions, game, game_config, console_output)
+    @questions = questions
+    @game = game
+    @game_config = game_config
+    @console_output = console_output
   end
 
-  def run
-    @questions = Questions.new
-    @game = GameLogic.new
-    @console_output = ConsoleOutput.new
-
-    @game_config = GameConfig.new(@questions)
-
+  def run()
     until @game.is_game_over? do
-      print_game_title_and_board
+      @console_output.print_game_title_and_board(@game, @game_config)
       valid_options = @game.open_spaces.map(&:to_s)
 
       if @game.current_player == :X || (@game.current_player == :O && @game_config.player_two_type == :human)
@@ -30,7 +24,7 @@ class GameLoop
         @game.cpu_turn
       end
     end
-    print_game_title_and_board
+    @console_output.print_game_title_and_board(@game, @game_config)
 
     if @game.is_there_winner?
       puts("GAME OVER: #{@game.is_there_winner?} WINS!!")
@@ -39,6 +33,4 @@ class GameLoop
     end
 
   end
-
-
 end
