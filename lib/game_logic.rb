@@ -58,9 +58,75 @@ class GameLogic
   end
 
   def cpu_turn
-    random_open_space = open_spaces().sample
-    take_turn(random_open_space)
+    cpu_turn = best_spot()
+    take_turn(cpu_turn)
   end
+
+
+
+  def best_spot
+    result = minimax(@board_spaces, :O) 
+    cpu_choice = result[:score]
+    return cpu_choice
+  end
+
+
+  def minimax(new_board, player)
+    avail_spots = open_spaces()
+    if is_there_winner?() == :X  
+      return {:score => -10}
+    elsif is_there_winner?() == :O 
+      return {:score => 10}
+    elsif open_spaces().size == 0 
+      return {:score => 0}
+    end
+
+    moves = []
+    for i in avail_spots
+      move = {}
+      move[:index] = new_board[avail_spots[i]]
+      new_board[avail_spots[i]] = player
+
+      if player == :O
+        result = minimax(new_board, :X)
+        move.score = result.score
+      else
+        result = minimax(new_board, :O)
+        move.score = result.score
+      end
+
+      new_board[avail_spots[i]] = move[:index]
+
+      moves.append(move)
+    end
+
+    best_move = 0
+    if player == :O
+      best_score = -10000
+      for i in moves
+        if moves[i].score > best_score
+          best_score = moves[i].score
+          best_move = i
+        end
+      end
+    else
+      best_score = 10000
+      for i in moves
+        if moves[i].score < best_score
+          best_score = moves[i].score
+          best_move = i
+        end
+      end
+    end
+
+    return moves[best_move]
+
+
+  end
+
+
+ 
+
 
 
 

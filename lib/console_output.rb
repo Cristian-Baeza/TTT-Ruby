@@ -1,9 +1,5 @@
 class ConsoleOutput
 
-  # WELCOME_MESSAGE_HVH = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- PLAYER 2 IS O\n\n"
-
-  # WELCOME_MESSAGE_HVC = "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "PLAYER 1 IS X --- CPU 2 IS O\n\n"
-
   TIE_MESSAGE = "GAME OVER: TIE!"
 
   def print_game_title_and_board(game, game_config)

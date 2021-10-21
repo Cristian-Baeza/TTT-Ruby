@@ -24,6 +24,7 @@ class GameLoop
         @game.cpu_turn
       end
     end
+
     @console_output.print_game_title_and_board(@game, @game_config)
 
     if @game.is_there_winner?
