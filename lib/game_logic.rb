@@ -1,5 +1,5 @@
 class GameLogic
-  attr_reader :board_spaces
+  attr_accessor :board_spaces, :player_one, :player_two
 
   WIN_COMBOS = [
     [0,1,2], # top_row
@@ -14,6 +14,8 @@ class GameLogic
 
   def initialize()
     @board_spaces = Array.new(9, :empty)
+    @player_one = :X
+    @player_two = :O
   end
 
   def take_turn(choice)
@@ -46,7 +48,7 @@ class GameLogic
   end
 
   def current_player
-      turn_count() % 2 == 0 ? :X : :O
+      turn_count() % 2 == 0 ? @player_one : @player_two
   end
 
   def board_full?
