@@ -2,6 +2,10 @@ class ConsoleOutput
 
   TIE_MESSAGE = "GAME OVER: TIE!"
 
+  def initialize(game_config)
+    @game_config = game_config
+  end
+
   def print_game_title_and_board(game_logic, game_config)
     puts(welcome_message(game_config))
     puts(show_board(game_logic))
@@ -13,7 +17,7 @@ class ConsoleOutput
 
   def formatter(value)
     return " " if value == :empty
-    value
+    value.to_s
   end
 
   def show_board(ttt)
