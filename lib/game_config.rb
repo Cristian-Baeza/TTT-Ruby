@@ -6,7 +6,7 @@ class GameConfig
     if questions.validate_user_input("PLAY VS: \n1.HUMAN \n2.CPU", ["1","2"]) == 1
       @player_one_type = :human
       @player_two_type = :human
-    elsif
+    else
       @player_one_type = :human
       @player_two_type = :computer
     end
