@@ -10,7 +10,7 @@ describe GameLoop do
       expect(console_output).to receive(:print_game_title_and_board).once
       game_loop = GameLoop.new(nil, game, mock_game_config, console_output)
 
-      game_loop.run
+      game_loop.run(:human_vs_human)
 
     end
 
@@ -20,6 +20,7 @@ describe GameLoop do
       console_output = ConsoleOutput.new(mock_game_config)
       mock_questions = double("questions")
 
+      allow(mock_questions).to receive(:validate_user_input).and_return(1)
       allow(mock_game_config).to receive(:player_one_type).and_return(:computer)
       allow(mock_game_config).to receive(:player_two_type).and_return(:computer)
 
@@ -29,7 +30,7 @@ describe GameLoop do
 
       game_loop = GameLoop.new(mock_questions, game, mock_game_config, console_output)
 
-      game_loop.run
+      game_loop.run(:human_vs_computer)
 
     end
   end

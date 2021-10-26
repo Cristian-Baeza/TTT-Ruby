@@ -12,15 +12,17 @@ class GameLoop
     @console_output = console_output
   end
 
-  def run()
+  def run(game_type)
     until @game_logic.is_game_over? do
       @console_output.print_game_title_and_board(@game_logic, @game_config)
       valid_options = @game_logic.open_spaces.map(&:to_s)
 
-      if @game_logic.current_player == :X || (@game_logic.current_player == :O && @game_config.player_two_type == :human)
+      if game_type == :human_vs_human
         user_choice = @questions.validate_user_input("PICK A SPACE #{@game_logic.current_player()}", valid_options)
         @game_logic.take_turn(user_choice)
-      else
+      elsif game_type = :human_vs_computer
+        user_choice = @questions.validate_user_input("PICK A SPACE #{@game_logic.current_player()}", valid_options)
+        @game_logic.take_turn(user_choice)
         @game_logic.cpu_turn
       end
     end
@@ -32,4 +34,5 @@ class GameLoop
       puts(ConsoleOutput::TIE_MESSAGE)
     end
   end
+  
 end
