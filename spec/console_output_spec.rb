@@ -41,7 +41,23 @@ RSpec.describe ConsoleOutput do
     end
 
     describe "when @game_config.color is true" do
+      it "returns a X formatted to be red" do
+        mock_game_config = double("game_config")
+        allow(mock_game_config).to receive(:color).and_return(true)
 
+        console_output = ConsoleOutput.new(mock_game_config)
+
+        expect(console_output.formatter(:X)).to eq("\e[31mX\e[0m")
+      end
+      
+      it "returns a O formatted to be blue" do
+        mock_game_config = double("game_config")
+        allow(mock_game_config).to receive(:color).and_return(true)
+
+        console_output = ConsoleOutput.new(mock_game_config)
+
+        expect(console_output.formatter(:O)).to eq("\e[34mO\e[0m")
+      end
     end
   end
 end

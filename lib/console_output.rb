@@ -15,9 +15,25 @@ class ConsoleOutput
     "-----------------------------\nWELCOME TO TIC-TAC-TOE\n" + "#{game_config.player_one_type} 1 IS X --- #{game_config.player_two_type} 2 IS O\n\n"
   end
 
+  def colorize_red(value)
+    "\e[31m#{value}\e[0m"
+  end
+  
+  def colorize_blue(value)
+    "\e[34m#{value}\e[0m"
+  end
+
   def formatter(value)
     return " " if value == :empty
-    value.to_s
+    if @game_config.color
+      if value == :X
+      value = colorize_red(value)
+      else
+      value = colorize_blue(value)
+      end
+    else
+      value.to_s
+    end
   end
 
   def show_board(ttt)
