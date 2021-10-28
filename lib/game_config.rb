@@ -6,11 +6,13 @@ class GameConfig
     @color = false
     @questions = questions
 
-    if questions.validate_user_input("COLOR?: \n1.YES\n2.NO", ["1","2"]) == 1
-      @color = true
+    if parsed_arguments.color == nil
+      configure_color_board()
+    else
+      @color = parsed_arguments.color 
     end
 
-    if parsed_arguments.game_type[0] == nil
+    if parsed_arguments.game_type == nil
       configure_game_type()
     else
       @player_one_type = set_player_type(parsed_arguments, :player_one)
@@ -22,9 +24,9 @@ class GameConfig
     if player == :player_one
       :human
     elsif player == :player_two
-      if parsed_arguments.game_type[0] == "hvh"
+      if parsed_arguments.game_type == "hvh"
         :human
-      elsif parsed_arguments.game_type[0] == "hvc"
+      elsif parsed_arguments.game_type == "hvc"
         :computer
       end
     end
@@ -37,6 +39,12 @@ class GameConfig
     else
       @player_one_type = :human
       @player_two_type = :computer
+    end
+  end
+
+  def configure_color_board
+    if @questions.validate_user_input("COLOR?: \n1.YES\n2.NO", ["1","2"]) == 1
+      @color = true
     end
   end
 
