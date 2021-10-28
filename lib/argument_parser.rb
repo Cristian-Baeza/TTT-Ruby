@@ -8,6 +8,5 @@ class ArgumentParser
       else
         @game_type = game_type_user_chose
       end
-      puts @game_type[0]
     end
 end

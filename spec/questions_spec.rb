@@ -3,7 +3,7 @@ require 'questions'
 RSpec.describe Questions do
 
 describe "#validate_user_input" do
-  it "returns the value the user picked and change to integer" do
+  xit "returns the value the user picked and change to integer" do
       questions = Questions.new
       
       allow(questions).to receive(:gets).and_return("1\n")
@@ -13,7 +13,7 @@ describe "#validate_user_input" do
       expect(answer).to eq(1)
   end
 
-  it "it loops asking the question until it gets a valid answer" do
+  xit "it loops asking the question until it gets a valid answer" do
       questions = Questions.new  
       question = "PICK A SPACE "
       options = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]

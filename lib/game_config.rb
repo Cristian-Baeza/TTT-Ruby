@@ -11,31 +11,25 @@ class GameConfig
     end
 
     if parsed_arguments.game_type[0] == nil
-      self.configure_game_type()
+      configure_game_type()
     else
-      puts "WHYYYY"
       @player_one_type = set_player_type(parsed_arguments, :player_one)
       @player_two_type = set_player_type(parsed_arguments, :player_two)
     end
   end
 
-
   def set_player_type(parsed_arguments, player)
     if player == :player_one
-      puts "p1 is human"
       :human
     else
       if parsed_arguments.game_type[0] == "hvh"
-        puts "p2 is human"
         :human
       else
-        puts "p2 is cpu"
         :computer
       end
 
     end
   end
-
 
   def configure_game_type
     if @questions.validate_user_input("PLAY VS: \n1.HUMAN \n2.CPU", ["1","2"]) == 1
