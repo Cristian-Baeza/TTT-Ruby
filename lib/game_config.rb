@@ -21,13 +21,12 @@ class GameConfig
   def set_player_type(parsed_arguments, player)
     if player == :player_one
       :human
-    else
+    elsif player == :player_two
       if parsed_arguments.game_type[0] == "hvh"
         :human
-      else
+      elsif parsed_arguments.game_type[0] == "hvc"
         :computer
       end
-
     end
   end
 
