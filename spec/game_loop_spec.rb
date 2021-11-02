@@ -6,9 +6,11 @@ describe GameLoop do
       game = GameLogic.new()
       mock_game_config = double("game_config")
       console_output = ConsoleOutput.new(mock_game_config)
+      computer_logic = ComputerLogic.new(game)
+
       allow(game).to receive(:is_game_over?).and_return(true)
       expect(console_output).to receive(:print_game_title_and_board).once
-      game_loop = GameLoop.new(nil, game, mock_game_config, console_output)
+      game_loop = GameLoop.new(nil, game, mock_game_config, console_output, computer_logic)
 
       game_loop.run()
 
@@ -19,6 +21,7 @@ describe GameLoop do
       mock_game_config = double("game_config")
       console_output = ConsoleOutput.new(mock_game_config)
       mock_questions = double("questions")
+      computer_logic = ComputerLogic.new(game)
 
       allow(mock_questions).to receive(:validate_user_input).and_return(1)
       allow(mock_game_config).to receive(:player_one_type).and_return(:computer)
@@ -28,7 +31,7 @@ describe GameLoop do
       allow(game).to receive(:current_player).and_return(:O)
       expect(console_output).to receive(:print_game_title_and_board).twice
 
-      game_loop = GameLoop.new(mock_questions, game, mock_game_config, console_output)
+      game_loop = GameLoop.new(mock_questions, game, mock_game_config, console_output, computer_logic)
 
       game_loop.run()
 
