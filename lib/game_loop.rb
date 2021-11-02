@@ -2,14 +2,16 @@ require_relative "game_logic"
 require_relative "questions"
 require_relative "console_output"
 require_relative "game_config"
+require_relative "computer_logic"
 
 class GameLoop
 
-  def initialize(questions, game_logic, game_config, console_output)
+  def initialize(questions, game_logic, game_config, console_output, computer_logic)
     @questions = questions
     @game_logic = game_logic
     @game_config = game_config
     @console_output = console_output
+    @computer_logic = computer_logic
   end
 
   def run
@@ -25,7 +27,7 @@ class GameLoop
         user_choice = @questions.validate_user_input("PICK A SPACE #{@game_logic.current_player()}", valid_options)
         @game_logic.take_turn(user_choice)
       else
-        @game_logic.cpu_turn
+        @computer_logic.cpu_turn
       end
     end
     @console_output.print_game_title_and_board(@game_logic, @game_config)
