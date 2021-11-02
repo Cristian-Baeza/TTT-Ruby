@@ -147,13 +147,13 @@ RSpec.describe GameLogic do
       end
     end
 
-    describe "#cpu_blocks_two_in_row_horizontally" do
+    describe "#cpu_check_for_wins_or_blocks_horizontally" do
       it "fills a :O in rightmost spot if there is two X's together horizontally" do
         game = GameLogic.new
         game.board_spaces[0] = :X
         game.board_spaces[1] = :X
 
-        game.cpu_blocks_two_in_row_horizontally?()
+        game.cpu_check_for_wins_or_blocks_horizontally?(:X)
 
         expect(game.board_spaces[2]).to eq(:O)
       end
@@ -163,19 +163,19 @@ RSpec.describe GameLogic do
         game.board_spaces[1] = :X
         game.board_spaces[2] = :X
 
-        game.cpu_blocks_two_in_row_horizontally?()
+        game.cpu_check_for_wins_or_blocks_horizontally?(:X)
 
         expect(game.board_spaces[0]).to eq(:O)
       end
     end
     
-    describe "#cpu_blocks_two_in_row_vertically" do
+    describe "#cpu_check_for_wins_or_blocks_vertically" do
       it "fills a :O in bottom spot if there is two X's together vertically" do
         game = GameLogic.new
         game.board_spaces[0] = :X
         game.board_spaces[3] = :X
 
-        game.cpu_blocks_two_in_row_vertically?()
+        game.cpu_check_for_wins_or_blocks_vertically?(:X)
 
         expect(game.board_spaces[6]).to eq(:O)
       end
@@ -185,19 +185,19 @@ RSpec.describe GameLogic do
         game.board_spaces[4] = :X
         game.board_spaces[7] = :X
 
-        game.cpu_blocks_two_in_row_vertically?()
+        game.cpu_check_for_wins_or_blocks_vertically?(:X)
 
         expect(game.board_spaces[1]).to eq(:O)
       end
     end
     
-    describe "#cpu_blocks_two_in_row_diagonally" do
+    describe "#cpu_check_for_wins_or_blocks_diagonally" do
       it "fills a :O in bottom right spot if there is two X's together diagonally" do
         game = GameLogic.new
         game.board_spaces[0] = :X
         game.board_spaces[4] = :X
 
-        game.cpu_blocks_two_in_row_diagonally?()
+        game.cpu_check_for_wins_or_blocks_diagonally?(:X)
 
         expect(game.board_spaces[8]).to eq(:O)
       end
@@ -207,7 +207,43 @@ RSpec.describe GameLogic do
         game.board_spaces[2] = :X
         game.board_spaces[4] = :X
 
-        game.cpu_blocks_two_in_row_diagonally?()
+        game.cpu_check_for_wins_or_blocks_diagonally?(:X)
+
+        expect(game.board_spaces[6]).to eq(:O)
+      end
+    end
+    
+    describe "#cpu_check_for_wins_or_blocks_horizontally" do
+      it "fills a :O in empty spot if it has two in a row horizontally" do
+        game = GameLogic.new
+        game.board_spaces[0] = :O
+        game.board_spaces[1] = :O
+
+        game.cpu_check_for_wins_or_blocks_horizontally?(:O)
+
+        expect(game.board_spaces[2]).to eq(:O)
+      end
+    end
+    
+    describe "#cpu_check_for_wins_or_blocks_vertically" do
+      it "fills a :O in empty spot if it has two in a row vertically" do
+        game = GameLogic.new
+        game.board_spaces[0] = :O
+        game.board_spaces[3] = :O
+
+        game.cpu_check_for_wins_or_blocks_vertically?(:O)
+
+        expect(game.board_spaces[6]).to eq(:O)
+      end
+    end
+    
+    describe "#cpu_check_for_wins_or_blocks_diagonally" do
+      it "fills a :O in empty spot if it has two in a row diagonally" do
+        game = GameLogic.new
+        game.board_spaces[2] = :O
+        game.board_spaces[4] = :O
+
+        game.cpu_check_for_wins_or_blocks_diagonally?(:O)
 
         expect(game.board_spaces[6]).to eq(:O)
       end
