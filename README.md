@@ -43,3 +43,15 @@ Run rspec on a file from spec directory
 ## Demo
 
 ![App Screenshot](https://ik.imagekit.io/0jty0e7po/TTT-Menu_WqThmNcWn02.png?updatedAt=1633631650496)
+
+## Run From Docker
+
+With your Docker deamon running, input the following in your CLI:
+
+```bash
+  docker run cbaeza8/ttt-ruby
+```
+
+## Updating Docker Image
+
+Any PR merged into main will automatically update the remote image repo
