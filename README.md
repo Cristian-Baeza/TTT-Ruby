@@ -49,7 +49,7 @@ Run rspec on a file from spec directory
 With your Docker deamon running, input the following in your CLI:
 
 ```bash
-  docker run cbaeza8/ttt-ruby
+  docker run -it cbaeza8/ttt-ruby
 ```
 
 ## Updating Docker Image
