@@ -1,9 +1,10 @@
 class GameConfig
-  attr_accessor :player_one_type, :player_two_type, :color
+  attr_accessor :player_one_type, :player_two_type, :color, :cpu_difficulty
   def initialize (questions, parsed_arguments = nil)
     @player_one_type = :not_set
     @player_two_type = :not_set
     @color = false
+    @cpu_difficulty = :hard
     @questions = questions
 
     if parsed_arguments.color == nil
@@ -18,6 +19,11 @@ class GameConfig
       @player_one_type = set_player_type(parsed_arguments, :player_one)
       @player_two_type = set_player_type(parsed_arguments, :player_two)
     end
+
+    if @player_two_type == :computer
+      configure_cpu_difficulty()
+    end
+
   end
 
   def set_player_type(parsed_arguments, player)
@@ -45,6 +51,12 @@ class GameConfig
   def configure_color_board
     if @questions.validate_user_input("COLOR?: \n1.YES\n2.NO", ["1","2"]) == 1
       @color = true
+    end
+  end
+
+  def configure_cpu_difficulty
+    if @questions.validate_user_input("CPU DIFFICULTY?: \n1.EASY\n2.HARD", ["1","2"]) == 1
+      @cpu_difficulty = :easy
     end
   end
 

@@ -26,6 +26,7 @@ describe GameLoop do
       allow(mock_questions).to receive(:validate_user_input).and_return(1)
       allow(mock_game_config).to receive(:player_one_type).and_return(:computer)
       allow(mock_game_config).to receive(:player_two_type).and_return(:computer)
+      allow(mock_game_config).to receive(:cpu_difficulty).and_return(:easy)
 
       allow(game).to receive(:is_game_over?).and_return(false, true)
       allow(game).to receive(:current_player).and_return(:O)

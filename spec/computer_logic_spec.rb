@@ -7,7 +7,7 @@ RSpec.describe ComputerLogic do
     it "fills in one spot on board" do
       game = GameLogic.new
       computer_logic = ComputerLogic.new(game)
-      computer_logic.cpu_turn
+      computer_logic.cpu_take_open_space
 
       expect(game.open_spaces.size).to eq(8) 
     end
@@ -16,8 +16,8 @@ RSpec.describe ComputerLogic do
       game = GameLogic.new
       computer_logic = ComputerLogic.new(game)
       game.board_spaces[0] = :X
-      computer_logic.cpu_turn
-      computer_logic.cpu_turn
+      computer_logic.cpu_take_open_space
+      computer_logic.cpu_take_open_space
 
       expect(game.open_spaces.size).to eq(6) 
     end
