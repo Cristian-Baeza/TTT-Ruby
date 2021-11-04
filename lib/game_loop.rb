@@ -27,11 +27,7 @@ class GameLoop
         user_choice = @questions.validate_user_input("PICK A SPACE #{@game_logic.current_player()}", valid_options)
         @game_logic.take_turn(user_choice)
       else
-        if @game_config.cpu_difficulty == :easy
-          @computer_logic.cpu_turn_easy
-        else
-          @computer_logic.cpu_turn_hard
-        end
+        @computer_logic.cpu_turn
       end
     end
     @console_output.print_game_title_and_board(@game_logic, @game_config)

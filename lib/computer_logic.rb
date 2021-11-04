@@ -1,7 +1,16 @@
 class ComputerLogic
   
-    def initialize(game_logic)
+    def initialize(game_logic, game_config)
       @game_logic = game_logic
+      @game_config = game_config
+    end
+
+    def cpu_turn
+      if @game_config.cpu_difficulty == :easy
+        cpu_turn_easy()
+      else
+        cpu_turn_hard()
+      end
     end
   
     def cpu_turn_hard
