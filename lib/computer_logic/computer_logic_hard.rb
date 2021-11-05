@@ -1,9 +1,9 @@
-class ComputerLogic
+class ComputerLogicHard
   
     def initialize(game_logic)
       @game_logic = game_logic
     end
-  
+
     def cpu_turn
       if cpu_check_for_wins_or_blocks_horizontally?(:X)
       elsif cpu_check_for_wins_or_blocks_vertically?(:X)

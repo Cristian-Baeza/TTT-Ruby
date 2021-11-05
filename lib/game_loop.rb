@@ -1,9 +1,3 @@
-require_relative "game_logic"
-require_relative "questions"
-require_relative "console_output"
-require_relative "game_config"
-require_relative "computer_logic"
-
 class GameLoop
 
   def initialize(questions, game_logic, game_config, console_output, computer_logic)
