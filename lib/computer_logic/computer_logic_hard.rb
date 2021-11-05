@@ -1,19 +1,10 @@
-class ComputerLogic
+class ComputerLogicHard
   
-    def initialize(game_logic, game_config)
+    def initialize(game_logic)
       @game_logic = game_logic
-      @game_config = game_config
     end
 
     def cpu_turn
-      if @game_config.cpu_difficulty == :easy
-        cpu_turn_easy()
-      else
-        cpu_turn_hard()
-      end
-    end
-  
-    def cpu_turn_hard
       if cpu_check_for_wins_or_blocks_horizontally?(:X)
       elsif cpu_check_for_wins_or_blocks_vertically?(:X)
       elsif cpu_check_for_wins_or_blocks_diagonally?(:X)
@@ -24,10 +15,6 @@ class ComputerLogic
       else
          cpu_take_open_space()
       end
-    end
-
-    def cpu_turn_easy
-      cpu_take_open_space()
     end
 
     def cpu_take_open_space
