@@ -1,10 +1,11 @@
 class GameConfig
-  attr_accessor :player_one_type, :player_two_type, :color, :cpu_difficulty
+  attr_accessor :player_one_type, :player_two_type, :color, :cpu_difficulty_player_one, :cpu_difficulty_player_two
   def initialize (questions, parsed_arguments = nil)
     @player_one_type = :not_set
     @player_two_type = :not_set
     @color = false
-    @cpu_difficulty = :hard
+    @cpu_difficulty_player_one = :not_set
+    @cpu_difficulty_player_two = :not_set
     @questions = questions
 
     if parsed_arguments.color == nil
@@ -19,11 +20,6 @@ class GameConfig
       @player_one_type = set_player_type(parsed_arguments, :player_one)
       @player_two_type = set_player_type(parsed_arguments, :player_two)
     end
-
-    if @player_two_type == :computer
-      configure_cpu_difficulty()
-    end
-
   end
 
   def set_player_type(parsed_arguments, player)
@@ -39,12 +35,18 @@ class GameConfig
   end
 
   def configure_game_type
-    if @questions.validate_user_input("PLAY VS: \n1.HUMAN \n2.CPU", ["1","2"]) == 1
+    if @questions.validate_user_input("PLAYER 1 IS A: \n1.HUMAN \n2.CPU", ["1","2"]) == 1
       @player_one_type = :human
+    else
+      @player_one_type = :computer
+      @cpu_difficulty_player_one = configure_cpu_difficulty()
+    end
+    
+    if @questions.validate_user_input("PLAYER 2 IS A: \n1.HUMAN \n2.CPU", ["1","2"]) == 1
       @player_two_type = :human
     else
-      @player_one_type = :human
       @player_two_type = :computer
+      @cpu_difficulty_player_two = configure_cpu_difficulty()
     end
   end
 
@@ -55,9 +57,7 @@ class GameConfig
   end
 
   def configure_cpu_difficulty
-    if @questions.validate_user_input("CPU DIFFICULTY?: \n1.EASY\n2.HARD", ["1","2"]) == 1
-      @cpu_difficulty = :easy
-    end
+    @questions.validate_user_input("CPU DIFFICULTY?: \n1.EASY\n2.HARD", ["1","2"]) == 1 ? :easy : :hard
   end
 
 
