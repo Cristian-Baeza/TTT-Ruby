@@ -15,7 +15,7 @@ RSpec.describe Questions do
       expect(questions).to receive(:print).once.with("3")
       expect(questions).to receive(:puts).once.with(" )")
 
-      answer = questions.pick_a_number(question, ["2", "3"])
+      answer = questions.pick_a_number(question, [2, 3])
 
       expect(answer).to eq(2)
     end
@@ -32,7 +32,7 @@ RSpec.describe Questions do
       expect(questions).to receive(:puts).twice.with(" )")
       expect(questions).to receive(:puts).with("INVALID OPTION")
 
-      answer = questions.pick_a_number(question, ["2", "3"])
+      answer = questions.pick_a_number(question, [2, 3])
 
       expect(answer).to eq(3)
     end

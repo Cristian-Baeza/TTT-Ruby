@@ -9,8 +9,8 @@ class Questions
         print ", " unless index == valid_numbers.count - 1
       end
       puts " )"
-      user_answer = $stdin.gets.chomp
-      return user_answer.to_i if valid_numbers.include?(user_answer)
+      user_answer = $stdin.gets.chomp.to_i
+      return user_answer if valid_numbers.include?(user_answer)
       puts "INVALID OPTION"
     end
   end
