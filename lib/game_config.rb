@@ -35,29 +35,23 @@ class GameConfig
   end
 
   def configure_game_type
-    if @questions.validate_user_input("PLAYER 1 IS A: \n1.HUMAN \n2.CPU", ["1","2"]) == 1
-      @player_one_type = :human
-    else
-      @player_one_type = :computer
+    @player_one_type = @questions.multichoice("PLAYER 1 IS A:", [:human, :computer])
+    if @player_one_type == :computer
       @cpu_difficulty_player_one = configure_cpu_difficulty()
     end
-    
-    if @questions.validate_user_input("PLAYER 2 IS A: \n1.HUMAN \n2.CPU", ["1","2"]) == 1
-      @player_two_type = :human
-    else
-      @player_two_type = :computer
+
+    @player_two_type = @questions.multichoice("PLAYER 2 IS A:", [:human, :computer])
+    if @player_two_type == :computer
       @cpu_difficulty_player_two = configure_cpu_difficulty()
     end
   end
 
   def configure_color_board
-    if @questions.validate_user_input("COLOR?: \n1.YES\n2.NO", ["1","2"]) == 1
-      @color = true
-    end
+      @color = @questions.yes_or_no?("COLOR?:")
   end
 
   def configure_cpu_difficulty
-    @questions.validate_user_input("CPU DIFFICULTY?: \n1.EASY\n2.HARD", ["1","2"]) == 1 ? :easy : :hard
+    @questions.multichoice("CPU DIFFICULTY?:", [:easy, :hard])
   end
 
 

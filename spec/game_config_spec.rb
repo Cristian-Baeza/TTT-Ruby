@@ -7,7 +7,8 @@ describe GameConfig do
       questions = Questions.new
       parsed_env_vars = EnvVarParser.new()
 
-      allow(questions).to receive(:validate_user_input).and_return(1)
+      allow(questions).to receive(:yes_or_no?).and_return(true)
+      allow(questions).to receive(:multichoice).and_return(:human)
       game_config = GameConfig.new(questions, parsed_env_vars)
 
       expect(game_config.player_one_type).to eq(:human)
@@ -18,7 +19,8 @@ describe GameConfig do
       questions = Questions.new
       parsed_env_vars = EnvVarParser.new()
 
-      allow(questions).to receive(:validate_user_input).and_return(2)
+      allow(questions).to receive(:yes_or_no?).and_return(true)
+      allow(questions).to receive(:multichoice).and_return(:computer)
       game_config = GameConfig.new(questions, parsed_env_vars)
 
       expect(game_config.player_one_type).to eq(:computer)
@@ -34,7 +36,7 @@ describe GameConfig do
       questions = Questions.new
       parsed_env_vars = EnvVarParser.new()
       
-      allow(questions).to receive(:validate_user_input).and_return(1)
+      allow(questions).to receive(:yes_or_no?).and_return(true)
       game_config = GameConfig.new(questions, parsed_env_vars)
 
       expect(game_config.player_one_type).to eq(:human)
@@ -50,7 +52,7 @@ describe GameConfig do
       questions = Questions.new
       parsed_env_vars = EnvVarParser.new()
       
-      allow(questions).to receive(:validate_user_input).and_return(1)
+      allow(questions).to receive(:yes_or_no?).and_return(true)
       game_config = GameConfig.new(questions, parsed_env_vars)
 
       expect(game_config.player_two_type).to eq(:computer)
@@ -64,7 +66,8 @@ describe GameConfig do
       questions = Questions.new
       parsed_env_vars = EnvVarParser.new()
 
-      allow(questions).to receive(:validate_user_input).and_return(1)
+      allow(questions).to receive(:yes_or_no?).and_return(true)
+      allow(questions).to receive(:multichoice).and_return(:human)
       game_config = GameConfig.new(questions, parsed_env_vars)
 
       expect(game_config.color).to eq(true)
