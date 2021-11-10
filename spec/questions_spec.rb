@@ -2,32 +2,6 @@ require 'questions'
 
 RSpec.describe Questions do
 
-  describe "#validate_user_input" do
-    it "returns the value the user picked and change to integer" do
-      questions = Questions.new
-
-      allow(STDIN).to receive(:gets).and_return("1\n")
-
-      answer = questions.validate_user_input("PICK A SPACE ", ["1", "2", "3", "4", "5", "6", "7", "8", "9"])
-
-      expect(answer).to eq(1)
-    end
-
-    it "it loops asking the question until it gets a valid answer" do
-      questions = Questions.new
-      question = "PICK A SPACE "
-      options = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-
-      allow(STDIN).to receive(:gets).and_return("10\n", "1\n")
-      expect(questions).to receive(:puts).twice.with(question)
-      expect(questions).to receive(:puts).with("INVALID OPTION")
-
-      answer = questions.validate_user_input(question, options)
-
-      expect(answer).to eq(1)
-    end
-  end
-
   describe "#pick_a_number" do
     it "returns the value the user picked and change as an integer" do
       questions = Questions.new
@@ -41,7 +15,7 @@ RSpec.describe Questions do
       expect(questions).to receive(:print).once.with("3")
       expect(questions).to receive(:puts).once.with(" )")
 
-      answer = questions.pick_a_number(question, [2, 3])
+      answer = questions.pick_a_number(question, ["2", "3"])
 
       expect(answer).to eq(2)
     end
@@ -58,7 +32,7 @@ RSpec.describe Questions do
       expect(questions).to receive(:puts).twice.with(" )")
       expect(questions).to receive(:puts).with("INVALID OPTION")
 
-      answer = questions.pick_a_number(question, [2, 3])
+      answer = questions.pick_a_number(question, ["2", "3"])
 
       expect(answer).to eq(3)
     end
@@ -69,9 +43,9 @@ RSpec.describe Questions do
       questions = Questions.new
 
       expect(STDOUT).to receive(:puts).with("Pick one of these:")
-      expect(STDOUT).to receive(:puts).with("1 : first")
-      expect(STDOUT).to receive(:puts).with("2 : second")
-      expect(STDOUT).to receive(:puts).with("3 : third")
+      expect(STDOUT).to receive(:puts).with("1. first")
+      expect(STDOUT).to receive(:puts).with("2. second")
+      expect(STDOUT).to receive(:puts).with("3. third")
 
       allow(STDIN).to receive(:gets).and_return("1\n")
 
@@ -84,9 +58,9 @@ RSpec.describe Questions do
       questions = Questions.new
 
       expect(STDOUT).to receive(:puts).with("Pick one of these:").exactly(3).times
-      expect(STDOUT).to receive(:puts).with("1 : first").exactly(3).times
-      expect(STDOUT).to receive(:puts).with("2 : second").exactly(3).times
-      expect(STDOUT).to receive(:puts).with("3 : third").exactly(3).times
+      expect(STDOUT).to receive(:puts).with("1. first").exactly(3).times
+      expect(STDOUT).to receive(:puts).with("2. second").exactly(3).times
+      expect(STDOUT).to receive(:puts).with("3. third").exactly(3).times
       expect(STDOUT).to receive(:puts).with("INVALID OPTION").twice
 
       allow(STDIN).to receive(:gets).and_return("0\n", "4\n", "3\n")
