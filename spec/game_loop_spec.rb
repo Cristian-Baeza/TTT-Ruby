@@ -1,4 +1,10 @@
 require 'game_loop'
+require 'game_logic'
+require 'game_config'
+require 'questions'
+require 'console_output'
+require_relative '../lib/computer_logic/computer_logic_easy.rb'
+require_relative '../lib/computer_logic/computer_logic_hard.rb'
 require_relative '../lib/player_type/player_human.rb'
 require_relative '../lib/player_type/player_cpu.rb'
 

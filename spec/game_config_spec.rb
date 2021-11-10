@@ -1,5 +1,6 @@
 require 'game_config'
 require 'questions'
+require 'env_var_parser'
 
 describe GameConfig do
   describe "#configure_game_type" do
