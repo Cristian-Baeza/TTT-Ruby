@@ -16,12 +16,11 @@ class GameConfig
 
   def configure_color_board
     if @parsed_arguments.color == nil
-      set_color_board()
+      @color = @questions.yes_or_no?("COLOR?:")
     else
       @color = @parsed_arguments.color 
     end
   end
-
 
   def configure_all_players()
     #player 1
@@ -55,9 +54,6 @@ class GameConfig
     end
   end
 
-  def set_color_board
-      @color = @questions.yes_or_no?("COLOR?:")
-  end
 
   def configure_cpu_difficulty
     @questions.multichoice("CPU DIFFICULTY?:", [:easy, :hard])
