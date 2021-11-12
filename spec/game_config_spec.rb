@@ -3,7 +3,7 @@ require 'questions'
 require 'env_var_parser'
 
 describe GameConfig do
-  describe "#configure_game_type" do
+  describe "#configure_player_type" do
     it 'when user picks 1 Human for player 2 both players are human' do
       questions = Questions.new
       parsed_env_vars = EnvVarParser.new()
@@ -29,41 +29,8 @@ describe GameConfig do
     end
   end
 
-  describe "#set_player_type" do
-    it "sets player_one & player_two type to :human if given hvh flag" do
-      cached_game_type = ENV["GAME_TYPE"]
-      ENV["GAME_TYPE"] = "hvh"
-
-      questions = Questions.new
-      parsed_env_vars = EnvVarParser.new()
-      
-      allow(questions).to receive(:yes_or_no?).and_return(true)
-      game_config = GameConfig.new(questions, parsed_env_vars)
-
-      expect(game_config.player_one_type).to eq(:human)
-      expect(game_config.player_two_type).to eq(:human)
-
-      ENV["GAME_TYPE"] = cached_game_type
-    end
-    
-    it "sets player_two type to :computer if given hvc flag" do
-      cached_game_type = ENV["GAME_TYPE"]
-      ENV["GAME_TYPE"] = "hvc"
-      
-      questions = Questions.new
-      parsed_env_vars = EnvVarParser.new()
-      
-      allow(questions).to receive(:yes_or_no?).and_return(true)
-      game_config = GameConfig.new(questions, parsed_env_vars)
-
-      expect(game_config.player_two_type).to eq(:computer)
-
-      ENV["GAME_TYPE"] = cached_game_type
-    end
-  end
-
   describe "#configure_color_board" do
-    it 'when user picks 1 sets @color to true' do
+    it 'when user picks yes sets @color to true' do
       questions = Questions.new
       parsed_env_vars = EnvVarParser.new()
 
@@ -72,6 +39,22 @@ describe GameConfig do
       game_config = GameConfig.new(questions, parsed_env_vars)
 
       expect(game_config.color).to eq(true)
+    end
+  end
+  
+  describe "#configure_cpu_difficulty" do
+    it 'returns easy or hard' do
+      questions = Questions.new
+      parsed_env_vars = EnvVarParser.new()
+
+      allow(questions).to receive(:yes_or_no?).and_return(true)
+      allow(questions).to receive(:multichoice).and_return(1)
+      allow(questions).to receive(:multichoice).and_return(2)
+      allow(questions).to receive(:multichoice).and_return(:easy)
+      game_config = GameConfig.new(questions, parsed_env_vars)
+      expected_answer = game_config.configure_cpu_difficulty()
+
+      expect(expected_answer).to eq(:easy)
     end
   end
 
