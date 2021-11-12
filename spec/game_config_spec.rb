@@ -24,8 +24,8 @@ describe GameConfig do
       allow(questions).to receive(:multichoice).and_return(:computer)
       game_config = GameConfig.new(questions, parsed_env_vars)
 
-      expect(game_config.player_one_type).to eq(:computer)
-      expect(game_config.player_two_type).to eq(:computer)
+      expect(game_config.player_one_type).to eq(:cpu_hard)
+      expect(game_config.player_two_type).to eq(:cpu_hard)
     end
   end
 
@@ -42,7 +42,7 @@ describe GameConfig do
     end
   end
   
-  describe "#configure_cpu_difficulty" do
+  describe "#set_cpu_difficulty" do
     it 'returns easy or hard' do
       questions = Questions.new
       parsed_env_vars = EnvVarParser.new()
@@ -52,7 +52,7 @@ describe GameConfig do
       allow(questions).to receive(:multichoice).and_return(2)
       allow(questions).to receive(:multichoice).and_return(:easy)
       game_config = GameConfig.new(questions, parsed_env_vars)
-      expected_answer = game_config.configure_cpu_difficulty()
+      expected_answer = game_config.set_cpu_difficulty()
 
       expect(expected_answer).to eq(:easy)
     end
