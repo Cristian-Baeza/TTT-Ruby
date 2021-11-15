@@ -5,7 +5,7 @@ describe "EnvVarParser" do
   describe "#parse_player" do
     it "sets player to type nil if no env var is passed in" do
       parsed_env_vars = EnvVarParser.new()
-      parsed_env_vars.parse_player("PLAYER_ONE", nil)
+      parsed_env_vars.parse_player("PLAYER_ONE")
 
       expect(parsed_env_vars.player_one_type).to eq(nil)
     end
@@ -26,7 +26,7 @@ describe "EnvVarParser" do
 
       parsed_env_vars = EnvVarParser.new()
 
-      expect(parsed_env_vars.player_two_type).to eq(:computer)
+      expect(parsed_env_vars.player_two_type).to eq(:cpu_hard)
       ENV["PLAYER_TWO"] = cached_player_two
     end
   end

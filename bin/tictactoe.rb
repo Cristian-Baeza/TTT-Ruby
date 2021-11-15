@@ -15,11 +15,24 @@ game_config = GameConfig.new(questions, parsed_env_vars)
 game_logic = GameLogic.new
 console_output = ConsoleOutput.new(game_config)
 
-computer_logic_player_one = game_config.cpu_difficulty_player_one == :easy ? ComputerLogicEasy.new(game_logic) : ComputerLogicHard.new(game_logic)
-computer_logic_player_two = game_config.cpu_difficulty_player_two == :easy ? ComputerLogicEasy.new(game_logic) : ComputerLogicHard.new(game_logic)
+player_one_type = case game_config.player_one_type
+when :human
+  PlayerHuman.new(questions)
+when :cpu_easy
+  PlayerCpu.new(ComputerLogicEasy.new(game_logic))
+when :cpu_hard
+  PlayerCpu.new(ComputerLogicHard.new(game_logic))
+end
 
-player_one_type = game_config.player_one_type == :computer ? PlayerCpu.new(computer_logic_player_one) : PlayerHuman.new(questions)
-player_two_type = game_config.player_two_type == :computer ? PlayerCpu.new(computer_logic_player_two) : PlayerHuman.new(questions)
+player_two_type = case game_config.player_two_type
+when :human
+  PlayerHuman.new(questions)
+when :cpu_easy
+  PlayerCpu.new(ComputerLogicEasy.new(game_logic))
+when :cpu_hard
+  PlayerCpu.new(ComputerLogicHard.new(game_logic))
+end
+
 
 players = { X: player_one_type, O: player_two_type }
 
