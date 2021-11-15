@@ -24,7 +24,7 @@ class GameLoop
     if @game_logic.is_there_winner?
       puts("GAME OVER: #{@game_logic.is_there_winner?} WINS!!")
     else
-      puts(ConsoleOutput::TIE_MESSAGE)
+      puts(ConsoleOutputEnglish::TIE_MESSAGE)
     end
   end
 end

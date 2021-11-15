@@ -1,4 +1,4 @@
-class ConsoleOutput
+class ConsoleOutputEnglish
 
   TIE_MESSAGE = "GAME OVER: TIE!"
 

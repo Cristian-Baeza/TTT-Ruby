@@ -2,7 +2,7 @@ require 'game_loop'
 require 'game_logic'
 require 'game_config'
 require 'questions'
-require 'console_output'
+require_relative '../lib/console_output_language/console_output_english.rb'
 require_relative '../lib/computer_logic/computer_logic_easy.rb'
 require_relative '../lib/computer_logic/computer_logic_hard.rb'
 require_relative '../lib/player_type/player_human.rb'
@@ -14,7 +14,7 @@ describe GameLoop do
       game = GameLogic.new()
       questions = Questions.new
       mock_game_config = double("game_config")
-      console_output = ConsoleOutput.new(mock_game_config)
+      console_output = ConsoleOutputEnglish.new(mock_game_config)
       computer_logic = ComputerLogicEasy.new(game)
       players = { X: PlayerHuman.new(questions), O: PlayerCpu.new(computer_logic) }
 
@@ -29,7 +29,7 @@ describe GameLoop do
     it 'plays the last round then exits the game loop if the game is over' do
       game = GameLogic.new()
       mock_game_config = double("game_config")
-      console_output = ConsoleOutput.new(mock_game_config)
+      console_output = ConsoleOutputEnglish.new(mock_game_config)
       mock_questions = double("questions")
       computer_logic = ComputerLogicEasy.new(game)
       players = { X: PlayerHuman.new(mock_questions), O: PlayerCpu.new(computer_logic) }

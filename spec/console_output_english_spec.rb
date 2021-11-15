@@ -1,13 +1,13 @@
-require "console_output"
+require "console_output_language/console_output_english"
 require "game_logic"
 
-RSpec.describe ConsoleOutput do
+RSpec.describe ConsoleOutputEnglish do
 
   describe "#show_board" do
     it "shows TTT board in terminal" do
       mock_game_config = double("game_config")
       ttt_game = GameLogic.new
-      console_output = ConsoleOutput.new(mock_game_config)
+      console_output = ConsoleOutputEnglish.new(mock_game_config)
       board = ""
       board += "   |   |  \n"
       board += "-----------\n"
@@ -25,7 +25,7 @@ RSpec.describe ConsoleOutput do
         mock_game_config = double("game_config")
         allow(mock_game_config).to receive(:color).and_return(false)
 
-        console_output = ConsoleOutput.new(mock_game_config)
+        console_output = ConsoleOutputEnglish.new(mock_game_config)
 
         expect(console_output.formatter(:X)).to eq("X")
       end
@@ -34,7 +34,7 @@ RSpec.describe ConsoleOutput do
         mock_game_config = double("game_config")
         allow(mock_game_config).to receive(:color).and_return(false)
 
-        console_output = ConsoleOutput.new(mock_game_config)
+        console_output = ConsoleOutputEnglish.new(mock_game_config)
 
         expect(console_output.formatter(:O)).to eq("O")
       end
@@ -45,7 +45,7 @@ RSpec.describe ConsoleOutput do
         mock_game_config = double("game_config")
         allow(mock_game_config).to receive(:color).and_return(true)
 
-        console_output = ConsoleOutput.new(mock_game_config)
+        console_output = ConsoleOutputEnglish.new(mock_game_config)
 
         expect(console_output.formatter(:X)).to eq("\e[31mX\e[0m")
       end
@@ -54,7 +54,7 @@ RSpec.describe ConsoleOutput do
         mock_game_config = double("game_config")
         allow(mock_game_config).to receive(:color).and_return(true)
 
-        console_output = ConsoleOutput.new(mock_game_config)
+        console_output = ConsoleOutputEnglish.new(mock_game_config)
 
         expect(console_output.formatter(:O)).to eq("\e[34mO\e[0m")
       end
