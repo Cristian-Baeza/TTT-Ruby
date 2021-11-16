@@ -34,7 +34,7 @@ RSpec.describe ComputerLogicHard do
       game.board_spaces[0] = :X
       game.board_spaces[1] = :X
 
-      computer_logic.cpu_check_for_wins_or_blocks_horizontally?(:X)
+      computer_logic.cpu_check_for_wins_or_blocks(:X)
 
       expect(game.board_spaces[2]).to eq(:O)
     end
@@ -46,7 +46,7 @@ RSpec.describe ComputerLogicHard do
       game.board_spaces[1] = :X
       game.board_spaces[2] = :X
 
-      computer_logic.cpu_check_for_wins_or_blocks_horizontally?(:X)
+      computer_logic.cpu_check_for_wins_or_blocks(:X)
 
       expect(game.board_spaces[0]).to eq(:O)
     end
@@ -60,7 +60,7 @@ RSpec.describe ComputerLogicHard do
       game.board_spaces[0] = :X
       game.board_spaces[3] = :X
 
-      computer_logic.cpu_check_for_wins_or_blocks_vertically?(:X)
+      computer_logic.cpu_check_for_wins_or_blocks(:X)
 
       expect(game.board_spaces[6]).to eq(:O)
     end
@@ -72,7 +72,7 @@ RSpec.describe ComputerLogicHard do
       game.board_spaces[4] = :X
       game.board_spaces[7] = :X
 
-      computer_logic.cpu_check_for_wins_or_blocks_vertically?(:X)
+      computer_logic.cpu_check_for_wins_or_blocks(:X)
 
       expect(game.board_spaces[1]).to eq(:O)
     end
@@ -86,7 +86,7 @@ RSpec.describe ComputerLogicHard do
       game.board_spaces[0] = :X
       game.board_spaces[4] = :X
 
-      computer_logic.cpu_check_for_wins_or_blocks_diagonally?(:X)
+      computer_logic.cpu_check_for_wins_or_blocks(:X)
 
       expect(game.board_spaces[8]).to eq(:O)
     end
@@ -98,7 +98,7 @@ RSpec.describe ComputerLogicHard do
       game.board_spaces[2] = :X
       game.board_spaces[4] = :X
 
-      computer_logic.cpu_check_for_wins_or_blocks_diagonally?(:X)
+      computer_logic.cpu_check_for_wins_or_blocks(:X)
 
       expect(game.board_spaces[6]).to eq(:O)
     end
@@ -112,7 +112,7 @@ RSpec.describe ComputerLogicHard do
       game.board_spaces[0] = :O
       game.board_spaces[1] = :O
 
-      computer_logic.cpu_check_for_wins_or_blocks_horizontally?(:O)
+      computer_logic.cpu_check_for_wins_or_blocks(:O)
 
       expect(game.board_spaces[2]).to eq(:O)
     end
@@ -126,7 +126,7 @@ RSpec.describe ComputerLogicHard do
       game.board_spaces[0] = :O
       game.board_spaces[3] = :O
 
-      computer_logic.cpu_check_for_wins_or_blocks_vertically?(:O)
+      computer_logic.cpu_check_for_wins_or_blocks(:O)
 
       expect(game.board_spaces[6]).to eq(:O)
     end
@@ -140,7 +140,7 @@ RSpec.describe ComputerLogicHard do
       game.board_spaces[2] = :O
       game.board_spaces[4] = :O
 
-      computer_logic.cpu_check_for_wins_or_blocks_diagonally?(:O)
+      computer_logic.cpu_check_for_wins_or_blocks(:O)
 
       expect(game.board_spaces[6]).to eq(:O)
     end

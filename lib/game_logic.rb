@@ -1,19 +1,19 @@
 class GameLogic
-  attr_reader :board_spaces
+  attr_reader :board_spaces, :win_combos
 
-  WIN_COMBOS = [
-    [0,1,2], # top_row
-    [3,4,5], # middle_row
-    [6,7,8], # bottom_row
-    [0,3,6], # left_column
-    [1,4,7], # center_column
-    [2,5,8], # right_column
-    [0,4,8], # left_diagonal
-    [6,4,2] # right_diagonal
-  ]
-
+  
   def initialize()
     @board_spaces = Array.new(9, :empty)
+    @win_combos = [
+      [0,1,2], # top_row
+      [3,4,5], # middle_row
+      [6,7,8], # bottom_row
+      [0,3,6], # left_column
+      [1,4,7], # center_column
+      [2,5,8], # right_column
+      [0,4,8], # left_diagonal
+      [6,4,2] # right_diagonal
+    ]
   end
 
   def take_turn(choice)
@@ -27,7 +27,7 @@ class GameLogic
 
   def is_there_winner?
     winner_symbol = nil
-    for win_combo in WIN_COMBOS do
+    for win_combo in @win_combos do
       row = Array.new
       for index in win_combo do
         row.append(@board_spaces[index])
