@@ -23,7 +23,7 @@ Install dependencies
 Start application
 
 ```bash
-   bin/tictactoe.rb
+   ./tictactoe.rb
 ```
 
 ## Running Tests
