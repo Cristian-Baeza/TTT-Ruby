@@ -1,7 +1,6 @@
 require 'game_loop'
 require 'game_logic'
 require 'game_config'
-require 'questions'
 require 'console_output'
 require_relative '../lib/computer_logic/computer_logic_easy.rb'
 require_relative '../lib/computer_logic/computer_logic_hard.rb'
@@ -12,15 +11,15 @@ describe GameLoop do
   describe 'run' do
     it 'prints the board and exits the game loop if the game is over' do
       game = GameLogic.new()
-      questions = Questions.new
+      mock_questions = double("questions")
       mock_game_config = double("game_config")
       console_output = ConsoleOutput.new(mock_game_config)
       computer_logic = ComputerLogicEasy.new(game)
-      players = { X: PlayerHuman.new(questions), O: PlayerCpu.new(computer_logic) }
+      players = { X: PlayerHuman.new(mock_questions), O: PlayerCpu.new(computer_logic) }
 
       allow(game).to receive(:is_game_over?).and_return(true)
       expect(console_output).to receive(:print_game_title_and_board).once
-      game_loop = GameLoop.new(questions, players, game, mock_game_config, console_output)
+      game_loop = GameLoop.new(mock_questions, players, game, mock_game_config, console_output)
 
       game_loop.run()
 

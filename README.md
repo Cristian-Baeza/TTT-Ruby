@@ -23,7 +23,7 @@ Install dependencies
 Start application
 
 ```bash
-  ruby lib/runner.rb
+   bin/tictactoe.rb
 ```
 
 ## Running Tests
