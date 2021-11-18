@@ -49,7 +49,7 @@ RSpec.describe ConsoleOutput do
 
         expect(console_output.formatter(:X)).to eq("\e[31mX\e[0m")
       end
-      
+
       it "returns a O formatted to be blue" do
         mock_game_config = double("game_config")
         allow(mock_game_config).to receive(:color).and_return(true)

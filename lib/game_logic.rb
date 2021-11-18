@@ -1,60 +1,56 @@
+require 'tic_tac_toe_logic'
 class GameLogic
-  attr_reader :board_spaces
-
-  WIN_COMBOS = [
-    [0,1,2], # top_row
-    [3,4,5], # middle_row
-    [6,7,8], # bottom_row
-    [0,3,6], # left_column
-    [1,4,7], # center_column
-    [2,5,8], # right_column
-    [0,4,8], # left_diagonal
-    [6,4,2] # right_diagonal
-  ]
 
   def initialize()
-    @board_spaces = Array.new(9, :empty)
+    @game_board_data = TicTacToeLogic::GameBoardData.new
+  end
+
+  def board_spaces
+    @game_board_data.map{ |m| player_to_symbol(m) }
+  end
+
+  def player_to_symbol(value)
+   case value
+   when :available
+     :empty
+    when :player_one
+      :X
+    when :player_two
+      :O
+    end
   end
 
   def take_turn(choice)
-    @board_spaces[choice -1] = current_player()
+    @game_board_data.play_move(choice - 1)
+  end
+
+  def best_move
+    @game_board_data.best_move + 1
   end
 
   def open_spaces
-    spaces_available_index = @board_spaces.each_index.select {|i| @board_spaces[i] == :empty}
+    spaces_available_index = @game_board_data.open_spaces
     spaces_available_index.map {|each| each + 1}
   end
 
   def is_there_winner?
-    winner_symbol = nil
-    for win_combo in WIN_COMBOS do
-      row = Array.new
-      for index in win_combo do
-        row.append(@board_spaces[index])
-      end
-      if (row.all? { |each| each == row[0]})
-          if row[0] != :empty
-            winner_symbol = row[0]
-          end
-      end
-    end
-    winner_symbol
+    player_to_symbol(@game_board_data.winner)
   end
 
   def turn_count
-    @board_spaces.size - @board_spaces.count(:empty)
+    @game_board_data.turn_count
   end
 
   def current_player
-      turn_count() % 2 == 0 ? :X : :O
+      player_to_symbol(@game_board_data.current_player)
   end
 
   def board_full?
-    !@board_spaces.include?(:empty)
+    @game_board_data.board_full?
   end
 
   def is_game_over?
-    board_full?() || is_there_winner?()
+    @game_board_data.game_over?
   end
 
 end
