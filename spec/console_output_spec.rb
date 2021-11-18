@@ -9,12 +9,13 @@ RSpec.describe ConsoleOutput do
       ttt_game = GameLogic.new
       console_output = ConsoleOutput.new(mock_game_config)
       board = ""
-      board += "   |   |  \n"
+      board += " \e[34mavailable\e[0m | \e[34mavailable\e[0m | \e[34mavailable\e[0m\n"
       board += "-----------\n"
-      board += "   |   |  \n"
+      board += " \e[34mavailable\e[0m | \e[34mavailable\e[0m | \e[34mavailable\e[0m\n"
       board += "-----------\n"
-      board += "   |   |  "
+      board += " \e[34mavailable\e[0m | \e[34mavailable\e[0m | \e[34mavailable\e[0m"
 
+      expect(mock_game_config).to receive(:color).and_return(false)
       expect(console_output.show_board(ttt_game)).to eq(board)
     end
   end

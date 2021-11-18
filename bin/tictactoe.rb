@@ -2,6 +2,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require "cli_questions"
+require "tic_tac_toe_logic"
 require_relative "../lib/game_loop"
 require_relative "../lib/env_var_parser"
 require_relative "../lib/game_logic"
@@ -37,7 +38,7 @@ when :cpu_hard
 end
 
 
-players = { X: player_one_type, O: player_two_type }
+players = { player_one: player_one_type, player_two: player_two_type }
 
 game_loop = GameLoop.new(questions, players, game_logic, game_config, console_output)
 

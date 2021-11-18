@@ -6,7 +6,7 @@ RSpec.describe GameLogic do
   describe "#take_turn" do
     it "check if alters board according to user input" do
       game = GameLogic.new
-      expected_output = [:X, :empty, :empty, :empty, :empty, :empty, :empty, :empty, :empty]
+      expected_output = [:player_one, :available, :available, :available, :available, :available, :available, :available, :available]
       choice = 1
 
       expect{game.take_turn(choice)}.to change {game.board_spaces}.to(expected_output)
@@ -66,12 +66,12 @@ RSpec.describe GameLogic do
     end
     
     describe "#current_player" do
-      it "returns player X if spaces used on board is even" do
+      it "returns player_one if spaces used on board is even" do
           game = GameLogic.new
           game.board_spaces[0] = :X
           game.board_spaces[1] = :O
     
-          expect(game.current_player()).to eq(:X)
+          expect(game.current_player()).to eq(:player_one)
       end
     
       it "returns player O if spaces used on board is odd" do
@@ -80,7 +80,7 @@ RSpec.describe GameLogic do
           game.board_spaces[1] = :O
           game.board_spaces[2] = :X
     
-          expect(game.current_player()).to eq(:O)
+          expect(game.current_player()).to eq(:player_two)
       end
     end
 
