@@ -1,5 +1,4 @@
 require 'tic_tac_toe_logic'
-
 class GameLogic
 
   def initialize()
