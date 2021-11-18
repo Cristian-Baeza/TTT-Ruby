@@ -38,7 +38,7 @@ when :cpu_hard
 end
 
 
-players = { player_one: player_one_type, player_two: player_two_type }
+players = { X: player_one_type, O: player_two_type }
 
 game_loop = GameLoop.new(questions, players, game_logic, game_config, console_output)
 

@@ -7,7 +7,18 @@ class GameLogic
   end
 
   def board_spaces
-    @game_board_data
+    @game_board_data.map{ |m| player_to_symbol(m) }
+  end
+
+  def player_to_symbol(value)
+   case value
+   when :available
+     :empty
+    when :player_one
+      :X
+    when :player_two
+      :O
+    end
   end
 
   def take_turn(choice)
@@ -24,7 +35,7 @@ class GameLogic
   end
 
   def is_there_winner?
-    @game_board_data.winner
+    player_to_symbol(@game_board_data.winner)
   end
 
   def turn_count
@@ -32,7 +43,7 @@ class GameLogic
   end
 
   def current_player
-      @game_board_data.current_player
+      player_to_symbol(@game_board_data.current_player)
   end
 
   def board_full?
